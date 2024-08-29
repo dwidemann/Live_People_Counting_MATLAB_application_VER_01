@@ -1,0 +1,3 @@
+C:/Users/a0491005/Documents/TI/lowpowerpeoplecounting/PeopleCountingExperimentsGaurang/Live People Counting MATALB application/cfg_file_application_4m_straight.cfg
+C:/Users/a0491005/Documents/TI/lowpowerpeoplecounting/PeopleCountingExperimentsGaurang/Live People Counting MATALB application/params.txt
+

@@ -1,0 +1,18 @@
+% <Uart COM PORT>
+serialPort 9
+
+% <number of frames to accumulate for heatmap>
+% <collapse the frames using 1: average 2: max> 
+% <Number of frames whose output to take mode of> 
+% <true number of people> 
+% <rMaxCombination> (Not used in current algorithm)
+% <hmin1>
+% <hmin2> 
+% <otsu's multiplier> 
+% <min points for a cluster to be a valid cluster>
+algParams 10 1 120 3 75 100 25 0.85 5
+
+% <saveBool>
+% <number of frames to save in each file> 
+% <room where test is being conducted>
+saveParams 0 500 LV-1F-C8
