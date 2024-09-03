@@ -14,45 +14,11 @@ if exist('outsideRun','var')
     end
 end
 
-if gui == 1
-    % Specify the file name
-    filename = 'load.txt';
-    if exist(filename, 'file')
-        % Specify the file path
-        filepath = 'load.txt';  % Replace with the actual path
-        
-        % Read the lines from the file
-        try
-            lines = textread(filepath, '%s', 'delimiter', '\n');
-        catch
-            error('Error reading the file. Make sure the file exists and the path is correct.');
-        end
-    else
-        lines{1} = '';
-        lines{2} = '';
-        lines{3} = '';
-    end
 
-    [file1, file2, folder, fig] = fileSelector(lines);
-    if strcmp(folder,'')
-        folder{1} = '';
-    end
-    close(fig);
-    
-    fileID = fopen(filename, 'w');  % 'w' for write
-    
-    % Write your content (e.g., header)
-    fprintf(fileID, strcat(strrep(file1{1},'\','/'),'\n'));
-    fprintf(fileID, strcat(strrep(file2{1},'\','/'),'\n'));
-    fprintf(fileID, strcat(strrep(folder{1},'\','/'),'\n'));
-    
-    % Close the file
-    fclose(fileID);
-else
-    file1{1} = 'cfg_file_application_4m_straight.cfg';
-    file2{1} = 'params.txt';
-    folder{1} = './dataHeatmap/202408';
-end
+file1{1} = 'cfg_file_application_4m_straight.cfg';
+file2{1} = 'params.txt';
+folder{1} = './dataHeatmap/202408';
+
 
 chirpConfigurationFileName = file1{1};
 % UART speeds
@@ -302,11 +268,11 @@ if playBack == 0
             continue;
         end
         
-        if controlPortBaudrate > 115200
-            writelineslow(hControlSerialPort, cliCfg{k});
-        else
-            writelineslow(hControlSerialPort, cliCfg{k});
-        end
+        % if controlPortBaudrate > 115200
+        %     writelineslow(hControlSerialPort, cliCfg{k});
+        % else
+        %     writelineslow(hControlSerialPort, cliCfg{k});
+        % end
         fprintf('%s\n', cliCfg{k});
     
         if strcmp('baudRate',strtok(cliCfg{k},' '))
@@ -1119,15 +1085,12 @@ end
 
 function sphandle = configureControlPort(comPortNum,baudrate)
     comPortsAvailable = serialportlist("available");
-    comPortString = ['COM' num2str(comPortNum)];
-    if any(contains(comPortsAvailable,comPortString))
-        sphandle = serialport(comPortString,baudrate,'Parity','none','Timeout',10); 
-        configureTerminator(sphandle,'CR/LF');
-        flush(sphandle);
-    else
-        sphandle = [];
-        fprintf('Serial port %s is already open or not available! Power cycle the device and re-run the application...\n', comPortString);
-    end
+    %comPortString = ['COM' num2str(comPortNum)];
+    comPortString = "/dev/tty.usbmodemRI324";
+    baudrate = 115200;
+    sphandle = serialport(comPortString,baudrate,'Parity','none','Timeout',10); 
+    configureTerminator(sphandle,'CR/LF');
+    flush(sphandle);
 end
 
 function sphandle = reconfigureControlPort(sphandle)
