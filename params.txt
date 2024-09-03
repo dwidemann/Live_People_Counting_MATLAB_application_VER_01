@@ -1,5 +1,5 @@
 % <Uart COM PORT>
-serialPort 5
+serialPort 6
 
 % <number of frames to accumulate for heatmap>
 % <collapse the frames using 1: average 2: max> 
@@ -10,7 +10,7 @@ serialPort 5
 % <hmin2> 
 % <otsu's multiplier> 
 % <min points for a cluster to be a valid cluster>
-algParams 10 1 120 0 75 100 25 0.85 5
+algParams 10 1 120 3 75 100 25 0.85 5
 
 % <saveBool>
 % <number of frames to save in each file> 

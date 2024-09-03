@@ -51,7 +51,11 @@ if gui == 1
 else
     file1{1} = 'cfg_file_application_4m_straight.cfg';
     file2{1} = 'params.txt';
-    folder{1} = './dataHeatmap/202408';
+    folder{1} = './dataHeatmap/20240903';
+end
+
+if (~exist(folder{1}, 'dir'))
+    mkdir(folder{1}); 
 end
 
 chirpConfigurationFileName = file1{1};
@@ -490,7 +494,7 @@ while(1)
             y = maxFileNum + 1;
             
             % Define the filename
-            filename = sprintf('%d.mat', y);
+            filename = sprintf('%dPeople_%d.mat', true_num_people, y);
             
             % Full file path
             fullFilePath = fullfile(folderPath, filename);
